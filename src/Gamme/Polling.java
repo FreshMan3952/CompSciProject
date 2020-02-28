@@ -9,68 +9,103 @@ import static processing.core.PConstants.*;
 public class Polling {
 
 
-    public static ArrayList<String> queue = new ArrayList<String>();
-    public Polling(){};
+    public static ArrayList<String> queue;
+
+    public Polling(){
+       queue = new ArrayList<String>();
+    };
+
+    public static boolean anyKeys(){
+        return queue.size() > 0;
+    }
+
+    public static boolean isKeyPressed(char c)
+    {
+        return queue.contains(Character.toString(c));
+    }
+
+    public static boolean isKeyPressed(String s)
+    {
+        return queue.contains(s);
+    }
 
 
     public void updatePressedKeys(PApplet p){
         switch(p.key)
         {
             case '\n':
-                queue.add("ENTER");
+                if (!queue.contains("ENTER"))
+                    queue.add("ENTER");
                 return;
             case '\r':
-                queue.add("ENTER");
+                if (!queue.contains("ENTER"))
+                    queue.add("ENTER");
                 return;
             case ' ':
-                queue.add("SPACE");
+                if (!queue.contains("SPACE"))
+                    queue.add("SPACE");
                 return;
         }
         if(p.key != CODED)
-            queue.add(Character.toString(p.key));
+            if (!queue.contains(Character.toString(p.key)))
+                queue.add(Character.toString(p.key));
         else
         {
             switch(p.keyCode)
             {
                 case UP:
-                    queue.add("UP");
+                    if (!queue.contains("UP"))
+                        queue.add("UP");
                     break;
                 case DOWN:
-                    queue.add("DOWN");
+                    if (!queue.contains("DOWN"))
+                        queue.add("DOWN");
                     break;
                 case LEFT:
-                    queue.add("LEFT");
+                    if (!queue.contains("LEFT"))
+                        queue.add("LEFT");
                     break;
                 case RIGHT:
-                    queue.add("RIGHT");
+                    if (!queue.contains("RIGHT"))
+                        queue.add("RIGHT");
                     break;
                 case ALT:
-                    queue.add("ALT");
+                    if (!queue.contains("ALT"))
+                        queue.add("ALT");
                     break;
                 case CONTROL:
-                    queue.add("CONTROL");
+                    if (!queue.contains("CONTROL"))
+                        queue.add("CONTROL");
                     break;
                 case SHIFT:
-                    queue.add("SHIFT");
+                    if (!queue.contains("SHIFT"))
+                        queue.add("SHIFT");
                     break;
                 case BACKSPACE:
-                    queue.add("BACKSPACE");
+                    if (!queue.contains("BACKSPACE"))
+                        queue.add("BACKSPACE");
                     break;
                 case RETURN:
-                    queue.add("ENTER");
+                    if (!queue.contains("ENTER"))
+                        queue.add("ENTER");
                     break;
                 case ENTER:
-                    queue.add("ENTER");
+                    if (!queue.contains("ENTER"))
+                        queue.add("ENTER");
                     break;
                 case ESC:
-                    queue.add("ESC");
+                    if (!queue.contains("ESC"))
+                        queue.add("ESC");
                     break;
                 case DELETE:
-                    queue.add("DELETE");
+                    if (!queue.contains("DELETE"))
+                        queue.add("DELETE");
                     break;
             }
         }
     }
+
+
     public void updateReleasedKeys(PApplet p){
         switch(p.key)
         {
@@ -130,9 +165,7 @@ public class Polling {
         }
     }
 
-    public static boolean anyKeys(){
-        return queue.size() > 0;
-    }
+
 
 
 }

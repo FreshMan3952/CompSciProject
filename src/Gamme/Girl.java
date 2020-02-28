@@ -19,9 +19,7 @@ public class Girl extends Animation {
     public void update( PApplet p) {
         y = p.mouseY;
         animate.setAnimationState(200,true);
-        if (Gamme.Polling.anyKeys()) {
-            x = 1000;
-        }
+
     }
 
     public void show (PApplet p){

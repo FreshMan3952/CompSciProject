@@ -27,11 +27,12 @@ public class Main extends PApplet {
 
     }
 
+    //updates pressed keys
     public void keyPressed()
     {
         poll.updatePressedKeys(this);
     }
-
+    //updates released keys
     public void keyReleased()
     {
         poll.updateReleasedKeys(this);
