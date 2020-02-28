@@ -5,6 +5,7 @@ import processing.core.*;
 public class Main extends PApplet {
 
     public Girl girl;
+    public Polling poll;
 
     public void settings() {
         size(1800, 900);
@@ -13,6 +14,7 @@ public class Main extends PApplet {
 
     public void setup (){
         girl = new Girl(this);
+        poll = new Polling();
     }
 
 
@@ -21,7 +23,18 @@ public class Main extends PApplet {
         background(64);
         ellipse(mouseX, mouseY, 20, 20);
         girl.update(this);
+        girl.show(this);
 
+    }
+
+    public void keyPressed()
+    {
+        poll.updatePressedKeys(this);
+    }
+
+    public void keyReleased()
+    {
+        poll.updateReleasedKeys(this);
     }
 
     public static void main(String[] passedArgs) {

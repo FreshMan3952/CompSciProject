@@ -18,7 +18,7 @@ public class Animation extends PApplet  {
     public void init (PApplet p, String name, int length) {
         this.length = length;
         File file = new File("CompSciGameResource");
-        String path = "C:\\Users\\Administrator\\IdeaProjects\\Dino\\src\\CompSciGameResource";
+        String path = "C:\\Users\\haoyan\\Documents\\CompSciProject\\src\\CompSciGameResource";
         animationState = 0;
 
         for (int i = 0; i < length; i ++){
@@ -28,18 +28,23 @@ public class Animation extends PApplet  {
 
     }
 
-
-    public void show(PApplet p,long speed, int posX, int posY, int sizeY, int sizeX) {
-        finish = System.currentTimeMillis();
-        timeElapsed = finish - start;
-        if (timeElapsed > speed) {
-            start = System.currentTimeMillis();
-            animationState++;
+    public void setAnimationState(long speed, boolean running){
+        if (running) {
+            finish = System.currentTimeMillis();
+            timeElapsed = finish - start;
+            if (timeElapsed > speed) {
+                start = System.currentTimeMillis();
+                animationState++;
+            }
+            if (animationState >= length) {
+                animationState = 0;
+            }
         }
-        if (animationState >= length) {
-            animationState = 0;
-        }
-        p.image( images[animationState] , posX, posY,sizeY,sizeX);
-
     }
+
+    public void show(PApplet p, int posX, int posY, int sizeY, int sizeX) {
+
+        p.image( images[animationState] , posX, posY,sizeY,sizeX);
+    }
+
 }
