@@ -4,28 +4,41 @@ import processing.core.*;
 
 public class Main extends PApplet {
 
-    public Girl girl;
     public Polling poll;
+    public Schedular schedular;
+    public Girl girl;
 
     public void settings() {
-        size(1800, 900);
+        size(1800, 900, P2D);
 
     }
+
+
 
     public void setup (){
-        girl = new Girl(this);
         poll = new Polling();
+        schedular = new Schedular(this);
+        schedular.add(new Girl(this));
     }
+
+
 
 
     public void draw(){
 
         background(64);
-        ellipse(mouseX, mouseY, 20, 20);
-        girl.update(this);
-        girl.show(this);
-
+        schedular.update(this);
+        text(frameRate,50,50);
     }
+
+
+
+
+
+
+
+
+
 
     //updates pressed keys
     public void keyPressed()

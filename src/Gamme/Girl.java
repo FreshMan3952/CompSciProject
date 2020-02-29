@@ -2,28 +2,55 @@ package Gamme;
 
 import processing.core.*;
 
-public class Girl extends Animation {
+public class Girl extends Updatables{
 
-    public Animation animate;
-    public int x = 100;
-    public int y = 0;
-    public int xSize = 80;
-    public int ySize = 100;
+    public Animation girl;
+    public double x = 0;
+    public double y = 0;
+    public int xSize = 150;
+    public int ySize = 200;
+    public double speed = 3;
+    public long animationSpeed = 200;
 
 
     public Girl (PApplet p) {
-        animate = new Animation();
-        animate.init(p,"girl",4);
+        girl = new Animation();
+        girl.init(p,"girl",4);
+    }
+    public Girl (PApplet p, double x, double y) {
+        girl = new Animation();
+        girl.init(p,"girl",4);
+        this.x = x;
+        this.y = y;
     }
 
     public void update( PApplet p) {
-        y = p.mouseY;
-        animate.setAnimationState(200,true);
+
+        if (Gamme.Polling.isKeyPressed("UP")){
+            y -= speed;
+            girl.setAnimationState(animationSpeed, true);
+        }else
+        if (Gamme.Polling.isKeyPressed("DOWN")){
+            girl.setAnimationState(animationSpeed, true);
+            y += speed;
+        }else
+        if (Gamme.Polling.isKeyPressed("LEFT")){
+            girl.setAnimationState(animationSpeed, true);
+            x -= speed;
+        }else
+        if (Gamme.Polling.isKeyPressed("RIGHT")){
+            girl.setAnimationState(animationSpeed, true);
+            x += speed;
+        }else girl.setAnimationState(animationSpeed,false);
 
     }
 
+    public boolean isFinished () {
+        return x > 1000;
+    }
+
     public void show (PApplet p){
-        animate.show(p, x, y, xSize, ySize);
+        girl.show(p, x, y, xSize, ySize);
     }
 
 

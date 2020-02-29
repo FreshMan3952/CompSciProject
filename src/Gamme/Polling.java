@@ -1,6 +1,5 @@
 package Gamme;
 import processing.core.*;
-import java.io.*;
 import java.util.*;
 
 import static processing.core.PConstants.*;
@@ -46,13 +45,19 @@ public class Polling {
                     queue.add("SPACE");
                 return;
         }
-        if(p.key != CODED)
-            if (!queue.contains(Character.toString(p.key)))
+        if(p.key != CODED) {
+            if (!queue.contains(Character.toString(p.key))) {
                 queue.add(Character.toString(p.key));
+            }
+        }
         else
         {
             switch(p.keyCode)
             {
+                case ALT:
+                    if (queue.contains("ALT"))
+                        queue.add("ALT");
+                    break;
                 case UP:
                     if (!queue.contains("UP"))
                         queue.add("UP");
@@ -69,10 +74,7 @@ public class Polling {
                     if (!queue.contains("RIGHT"))
                         queue.add("RIGHT");
                     break;
-                case ALT:
-                    if (!queue.contains("ALT"))
-                        queue.add("ALT");
-                    break;
+
                 case CONTROL:
                     if (!queue.contains("CONTROL"))
                         queue.add("CONTROL");
