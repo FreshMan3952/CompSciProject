@@ -14,6 +14,7 @@ public class Animation extends PApplet  {
     long timeElapsed ;
     int length;
     boolean run;
+    boolean showing;
 
     public void init (PApplet p, String name, int length) {
         init(p,name,length,false);
@@ -43,11 +44,13 @@ public class Animation extends PApplet  {
         setAnimationState(speed,running,true,false);
     }
 
-    public void setAnimationState(boolean running) {
-        setAnimationState(100,running,true,true);
+    public void setAnimationState(boolean animate) {
+        showing = animate;
     }
 
+
     public void setAnimationState(long speed, boolean running, boolean interruptable, boolean single){
+        showing = true;
         if (running) {
             run = true;
         }
@@ -75,7 +78,7 @@ public class Animation extends PApplet  {
     }
 
     public void show(PApplet p, double posX, double posY, int sizeY, int sizeX) {
-
+        if (showing)
         p.image( images[animationState] , (int)posX, (int)posY,sizeY,sizeX);
     }
 

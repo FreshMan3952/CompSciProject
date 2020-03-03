@@ -1,6 +1,9 @@
 package Gamme.Util;
 
 public class Constants {
+    public static int focusX;
+    public static int focusY;
+
     public static int[][] level1 = {
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},

@@ -7,19 +7,39 @@ import java.util.ArrayList;
 
 public class Schedular extends PApplet {
 
-    ArrayList<Updatables> updateable = new ArrayList<Updatables>();
+    ArrayList<Updatables> updatable = new ArrayList<Updatables>();
     public String gameState;
 
     public void add(Updatables o) {
-        updateable.add(o);
+        updatable.add(o);
+    }
+
+    public void getInOrder(){
+        ArrayList<Updatables> temp = new ArrayList<Updatables>();
+        int lowest = 0;
+        int index = 0;
+        for (int i = 0; i < updatable.size(); i ++) {
+            for (Updatables u : updatable) {
+                if (lowest <= u.layer()) {
+                    lowest = u.layer();
+                    index = updatable.indexOf(u);
+                }
+            }
+            temp.add(updatable.get(index));
+            updatable.remove(index);
+        }
+        for (Updatables u : temp){
+            updatable.add(u);
+        }
     }
 
     public void update (PApplet p){
-            for (int i = 0; i < updateable.size() ; i ++) {
-                updateable.get(i).update(p);
-                updateable.get(i).show(p);
-                if (updateable.get(i).isFinished()) {
-                    updateable.remove(i);
+            getInOrder();
+            for (int i = 0; i < updatable.size() ; i ++) {
+                updatable.get(i).update(p);
+                updatable.get(i).show(p);
+                if (updatable.get(i).isFinished()) {
+                    updatable.remove(i);
                 }
             }
 

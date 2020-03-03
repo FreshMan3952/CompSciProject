@@ -9,8 +9,10 @@ public class Floor extends Updatables {
     public int offsetY;
     public ArrayList<Tiles> tiles;
     public int length;
+    public int layer;
 
-    public Floor(PApplet p, int[][] level) {
+    public Floor(PApplet p, int[][] level, int layer) {
+        this.layer = layer;
         tiles = new ArrayList<Tiles>();
         length = level.length * level[0].length;
         for (int i = 0; i < level.length; i ++){
@@ -27,6 +29,11 @@ public class Floor extends Updatables {
             t.y = p.height/2 - ((10 - t.id[1]) * 64) + Polling.scroll[1];
         }
     }
+
+    public int layer(){
+        return layer;
+    }
+
     public boolean isFinished (){
         return false;
     }

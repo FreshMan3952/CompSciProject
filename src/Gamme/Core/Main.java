@@ -19,10 +19,11 @@ public class Main extends PApplet {
 
 
     public void setup (){
+        frameRate(60);
         poll = new Polling();
         schedular = new Schedular(this);
-        schedular.add(new Floor(this, Constants.level1));
-        schedular.add(new Girl(this,width/2,height/2));
+        schedular.add(new Floor(this, Constants.level1,0));
+        schedular.add(new Girl(this,width/2,height/2,2));
         colorMode(HSB, 100);
 
     }
@@ -33,8 +34,7 @@ public class Main extends PApplet {
     public void draw(){
 
         background(64);
-        pointLight(0, 0, 200, width/2, height/2, 500);
-        sphere(30);
+        pointLight(0, 0, 200, Constants.focusX, Constants.focusY, 300);
 
         schedular.update(this);
         text(frameRate,50,50);
